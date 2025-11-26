@@ -19,7 +19,8 @@ const App = (() => {
         pageCache.set(path, html);
         return html;
     }
-
+console.log("HASH:", location.hash);
+console.log("FULL URL:", location.href);
     async function showPage(path) {
         const root = document.getElementById(containerId);
         try {
@@ -70,7 +71,9 @@ const App = (() => {
     }
 
     function resolveFromHash() {
-        const hash = location.hash || "#/home";
+        let hash = location.hash.split("?")[0]; // убираем мусор Telegram
+        if (!hash || !hash.startsWith("#/")) hash = "#/home";
+
         const name = hash.replace(/^#\/?/, "").split("/")[0] || "home";
         return pagesPath + (name === "home" ? "index_content.html" : `${name}.html`);
     }
