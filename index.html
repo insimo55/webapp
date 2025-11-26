@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <!-- Важно для мобилок: запрещаем зум и ставим правильный масштаб -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Инженерные расчёты</title>
+    
+    <!-- 1. Стили -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- 2. Скрипт Телеграма -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- 3. Наш файл с формулами -->
+    <script src="calculations.js"></script>
+    
+    <!-- 4. Наш движок сайта (загружается последним) -->
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <!-- Сюда app.js будет загружать страницы. Изначально тут пусто. -->
+    <div id="app"></div>
+</body>
+</html>

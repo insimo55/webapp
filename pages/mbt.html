@@ -1,0 +1,93 @@
+<main>
+    <!-- Кнопка Назад -->
+    <button class="back-button" onclick="location.hash = '#/home'">
+        Назад
+    </button>
+
+    <h2>Метиленовая синь (МБТ)</h2>
+
+    <div class="card">
+        <!-- Краткое интро -->
+        <p style="font-size: 14px; margin-bottom: 15px;">
+            Определение концентрации коллоидных частиц (бентонита) по адсорбции метиленовой сини.
+        </p>
+
+        <!-- Сворачиваемая инструкция (чтобы не занимать место) -->
+        <details style="margin-bottom: 20px;">
+            <summary>
+                Реактивы и порядок работы
+            </summary>
+            
+            <div style="margin-top: 15px;">
+                <p style="font-weight:600; margin-bottom:5px;">Реактивы:</p>
+                <ul class="bullet" style="font-size: 13px; color: var(--tg-theme-hint-color);">
+                    <li>0,32%-ный водный раствор метиленовой сини</li>
+                    <li>5N раствор серной кислоты H₂SO₄</li>
+                    <li>3%-ный раствор перекиси водорода (аптечная) H₂O₂</li>
+                    <li>Дистиллированная вода</li>
+                </ul>
+
+                <p style="font-weight:600; margin-bottom:10px; margin-top: 15px;">Порядок работы:</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>1. Отобрать 2 мл перемешанного бурового раствора в колбу.</div>
+                    </label>
+
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>2. Добавить 20 мл дистиллированной воды.</div>
+                    </label>
+
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>3. Добавить 15 мл 3%-ной перекиси водорода и 1 мл 5N раствора серной кислоты. Кипятить 4 мин и охладить.</div>
+                    </label>
+
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>4. Титровать метиленовой синью по 0.5-1 мл.</div>
+                    </label>
+
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>
+                            5. Проба на бумаге:
+                            <div style="font-size: 13px; color: var(--tg-theme-hint-color); margin-top: 4px; border-left: 2px solid #ddd; padding-left: 8px;">
+                                Титровать до появления устойчивого голубого ореола вокруг пятна на фильтровальной бумаге.
+                                При полном сорбировании метиленовой сини глиной данной пробы раствора от капли будет оставаться тёмный круг с резко очерченной границей.
+                                Через 2 минуты необходимо взять каплю повторно, если ореол не исчезнет, титрование закончено.
+                            </div>
+                        </div>
+                    </label>
+                    
+                </div>
+            </div>
+        </details>
+
+        <!-- Ввод данных -->
+        <div style="font-size:13px; color:var(--tg-theme-hint-color); margin-bottom:15px; background: rgba(0,0,0,0.03); padding: 10px; border-radius: 8px;">
+            <div>Коэффициент (a): <b>7.125</b> (согласно ГОСТ)</div>
+            <div>Объем раствора: <b>2.0 мл</b> (согласно ГОСТ)</div>
+        </div>
+
+        <div class="input-block">
+            <label for="inpVolBlue">Объем метиленовой сини (V, мл)</label>
+            <input type="number" id="inpVolBlue" step="0.1" placeholder="например 5.5"
+                   oninput="calculateMbt()">
+        </div>
+    </div>
+
+    <!-- Результат -->
+    <div class="results-card" style="display: block;">
+        <h2>Результат:</h2>
+        
+        <p style="font-size: 13px; color: var(--tg-theme-hint-color);">
+            Формула: <span id="outFormula" style="font-family: monospace;">7.125 × V</span>
+        </p>
+
+        <p>Содержание коллоидных частиц (С):</p>
+        <div id="outContent" class="result-main" style="font-size: 24px;">-</div>
+    </div>
+</main>

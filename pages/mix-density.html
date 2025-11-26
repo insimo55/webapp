@@ -1,0 +1,37 @@
+<main>
+    <button class="back-button" onclick="location.hash = '#/home'">
+        Назад
+    </button>
+
+    <h2>Изменение плотности</h2>
+
+    <div class="card">
+        <p class="example">
+            Расчет плотности смеси при смешивании двух растворов.
+        </p>
+
+        <div class="input-block">
+            <label for="v_add">Объём добавляемого раствора (м³)</label>
+            <input id="v_add" type="number" step="0.01">
+        </div>
+
+        <div class="input-block">
+            <label for="p_add">Плотность добавляемого раствора (кг/м³)</label>
+            <input id="p_add" type="number" step="0.01">
+        </div>
+
+        <div class="input-block">
+            <label for="v_initial">Исходный объём раствора (м³)</label>
+            <input id="v_initial" type="number" step="0.01">
+        </div>
+
+        <div class="input-block">
+            <label for="p_initial">Исходная плотность раствора (кг/м³)</label>
+            <input id="p_initial" type="number" step="0.01">
+        </div>
+
+        <button onclick="mixDensity()">Рассчитать</button>
+    </div>
+
+    <div id="result" class="results-card"></div>
+</main>

@@ -1,0 +1,102 @@
+<main>
+    <!-- Кнопка Назад -->
+    <button class="back-button" onclick="location.hash = '#/home'">
+        Назад
+    </button>
+
+    <h2>Хлорид-ионы</h2>
+
+    <div class="card">
+        <p class="example">
+            Аргентометрический метод определения хлорид-ионов.
+        </p>
+
+        <!-- Сворачиваемая инструкция -->
+        <details style="margin-bottom: 20px;">
+            <summary>
+                Реактивы и порядок работы
+            </summary>
+            
+            <div style="margin-top: 10px;">
+                <p style="font-weight:600; margin-bottom:5px;">Реактивы:</p>
+                <ul class="bullet" style="font-size: 14px; color: var(--tg-theme-hint-color);">
+                    <li>10% р-р K₂CrO₄</li>
+                    <li>AgNO₃ (0.1 N или 0.282 N)</li>
+                    <li>Пипетки, кювета, палочка</li>
+                </ul>
+
+                <p style="font-weight:600; margin-bottom:5px;">Порядок работы:</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;"> <!-- Чуть увеличил отступ между шагами -->
+                    
+                    <!-- Шаг 1 -->
+                    <label style="align-items: flex-start;"> <!-- Выравниваем чекбокс по верху -->
+                        <input type="checkbox" style="margin-top: 4px;"> <!-- Чуть опускаем чекбокс под текст -->
+                        <div>
+                            <span>1. В пробу фильтрата (после общей щёлочности) прибавьте 1 мл 10% K₂CrO₄.</span>
+                            <!-- Примечание -->
+                            <div style="margin-top: 4px; font-size: 13px; color: var(--tg-theme-hint-color); font-style: italic; border-left: 2px solid #ddd; padding-left: 8px;">
+                                Если определение ведут в отдельной пробе, её необходимо подкислить 1-2 каплями H₂SO₄.
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- Шаг 2 -->
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>
+                            <span>2. Титруйте раствором AgNO₃ при перемешивании до перехода цвета из жёлтого в оранжевый/кирпичный.</span>
+                            <!-- Примечание -->
+                            <div style="margin-top: 4px; font-size: 13px; color: var(--tg-theme-hint-color); font-style: italic; border-left: 2px solid #ddd; padding-left: 8px;">
+                                При содержании Cl⁻ > 10000 мг/л используйте AgNO₃ 0,282 N.
+                            </div>
+                        </div>
+                    </label>
+
+                    <!-- Шаг 3 -->
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>
+                            <span>3. Запишите объем AgNO₃.</span>
+                        </div>
+                    </label>
+
+                </div>
+            </div>
+        </details>
+
+        <!-- Ввод данных -->
+        <div class="input-block">
+            <label for="selNormality">Нормальность AgNO₃ (N)</label>
+            <select id="selNormality" onchange="calculateChlorides()">
+                <option value="" disabled selected>Выберите нормальность</option>
+                <option value="0.1">0.1 N</option>
+                <option value="0.282">0.282 N</option>
+            </select>
+        </div>
+
+        <div class="input-block">
+            <label for="inpVolAg">Объем AgNO₃ на титрование (V, мл)</label>
+            <input type="number" id="inpVolAg" step="0.01" placeholder="например 0.82"
+                   oninput="calculateChlorides()">
+        </div>
+
+        <div class="input-block">
+            <label for="inpVolFilt">Объем фильтрата (a, мл)</label>
+            <input type="number" id="inpVolFilt" step="0.1" value="1" 
+                   oninput="calculateChlorides()">
+        </div>
+    </div>
+
+    <!-- Результат -->
+    <div class="results-card" style="display: block;">
+        <h2>Результат:</h2>
+        
+        <p style="font-size: 13px; color: var(--tg-theme-hint-color);">
+            Формула: <br>
+            <span id="outFormula" style="font-family: monospace;">(V × N × 35.5 × 1000) / a</span>
+        </p>
+
+        <p>Содержание Cl⁻:</p>
+        <div id="outResult" class="result-main" style="font-size: 24px;">-</div>
+    </div>
+</main>

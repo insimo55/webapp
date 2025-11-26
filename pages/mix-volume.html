@@ -1,0 +1,41 @@
+<main>
+    <!-- 1. Кнопка Назад в стиле iOS (ссылка) -->
+    <button class="back-button" onclick="location.hash = '#/home'">
+        Назад
+    </button>
+
+    <!-- 2. Заголовок (которого не хватало) -->
+    <h2>Разбавление раствора</h2>
+
+    <div class="card">
+        <p class="example">
+            Пожалуйста, вводите корректные данные. Обратите внимание на единицы измерения.
+        </p>
+
+        <div class="input-block">
+            <label for="p_target">Необходимая плотность смеси (кг/м³)</label>
+            <input id="p_target" type="number" step="0.01">
+        </div>
+
+        <div class="input-block">
+            <label for="v_initial">Исходный объём раствора (м³)</label>
+            <input id="v_initial" type="number" step="0.01">
+        </div>
+
+        <div class="input-block">
+            <label for="p_initial">Плотность исходного раствора (кг/м³)</label>
+            <input id="p_initial" type="number" step="0.01">
+        </div>
+
+        <div class="input-block">
+            <label for="p_add">Плотность добавляемого раствора (кг/м³)</label>
+            <input id="p_add" type="number" step="0.01">
+        </div>
+
+        <!-- 3. Просто вызываем функцию из calculations.js -->
+        <button onclick="mixVolume()">Рассчитать</button>
+    </div>
+
+    <!-- 4. Блок результата (пустой, без пробелов внутри!) -->
+    <div id="result" class="results-card"></div>
+</main>

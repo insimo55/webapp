@@ -1,0 +1,118 @@
+<main>
+    <!-- Кнопка Назад -->
+    <button class="back-button" onclick="location.hash = '#/home'">
+        Назад
+    </button>
+
+    <h2>Карбонат кальция</h2>
+
+    <div class="card">
+        <!-- Блок безопасности -->
+        <div class="safety-warning">
+            <div class="icon">⚠️</div>
+            <div>
+                <b>Осторожно: Соляная кислота!</b><br>
+                Вызывает ожоги. Не допускайте контакта с кожей и глазами. При попадании промывать водой 15 мин.
+            </div>
+        </div>
+
+        <p style="font-size: 14px; margin-bottom: 15px;">
+            Определение CaCO₃ с помощью манометрического кальциметра (реакция с HCl).
+        </p>
+
+        <!-- Инструкция -->
+        <details style="margin-bottom: 20px;">
+            <summary>
+                Реактивы и порядок работы
+            </summary>
+            
+            <div style="margin-top: 15px;">
+                <p style="font-weight:600; margin-bottom:5px;">Реактивы:</p>
+                <ul class="bullet" style="font-size: 13px; color: var(--tg-theme-hint-color);">
+                    <li>Соляная кислота 10% (HCl)</li>
+                    <li>Кальциметр</li>
+                </ul>
+
+                <p style="font-weight:600; margin-bottom:10px; margin-top: 15px;">Порядок работы:</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>1. Поместить 5 мл раствора в ячейку.</div>
+                    </label>
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>2. Поместить емкость с 20 мл HCl внутрь (аккуратно!).
+                            <div style="font-size: 13px; color: var(--tg-theme-hint-color); margin-top: 4px; border-left: 2px solid #ddd; padding-left: 8px;">
+                                Будьте осторожны, чтобы не пролить HCI и чтобы она не попала на пробу.
+                            </div>
+                        </div>
+                    </label>
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>3. Вручную затяните крышку ячейки.</div>
+                    </label>
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>4. Откройте спускной клапан, чтобы получить нулевые показания давления. Затем плотно закройте клапан.</div>
+                    </label>
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>5. Смешать кислоту с пробой (встряхивать). Подождите пока не прекратиться рост давления.</div>
+                    </label>
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>5. Записать максимальное давление.</div>
+                    </label>
+                </div>
+            </div>
+        </details>
+
+        <!-- Ввод данных -->
+        <div class="input-block">
+            <label for="selUnit">Единицы измерения манометра</label>
+            <select id="selUnit" onchange="calculateCalcium()">
+                <option value="atm" selected>атм (atm)</option>
+                <option value="mpa">МПа (MPa)</option>
+                <option value="psi">PSI</option>
+            </select>
+        </div>
+
+        <div class="input-block">
+            <label for="inpPressure">Показания давления</label>
+            <input type="number" id="inpPressure" step="0.1" placeholder="например 0.5"
+                   oninput="calculateCalcium()">
+        </div>
+    </div>
+
+    <!-- Результат -->
+    <div class="results-card" style="display: block;">
+        <h2>Результат:</h2>
+        
+        <p style="font-size: 13px; color: var(--tg-theme-hint-color); margin-bottom: 5px;">
+            Давление в PSI: <span id="outPsiInfo">(- PSI)</span>
+        </p>
+
+        <p>Содержание CaCO₃:</p>
+        <div id="outResult" class="result-main" style="font-size: 24px; color: var(--tg-theme-button-color);">-</div>
+    </div>
+
+    <!-- Таблица калибровки -->
+    <div style="margin: 20px 16px;">
+        <p style="font-size: 14px; font-weight: 600; margin-bottom: 5px;">Таблица калибровки:</p>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Давление (PSI)</th>
+                    <th>CaCO₃ (кг/м³)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1.0</td><td>6.0</td></tr>
+                <tr><td>4.0</td><td>37.0</td></tr>
+                <tr><td>6.0</td><td>57.8</td></tr>
+                <tr><td>7.0</td><td>68.0</td></tr>
+                <tr><td>11.0</td><td>109.8</td></tr>
+            </tbody>
+        </table>
+    </div>
+</main>

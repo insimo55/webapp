@@ -1,0 +1,66 @@
+<main>
+    <!-- Кнопка Назад -->
+    <button class="back-button" onclick="location.hash = '#/home'">
+        Назад
+    </button>
+
+    <h2>Карбонатная и общая щелочность</h2>
+
+    <div class="card">
+        <p>
+            Анализ фильтрата начинают с определения щелочности. Она обусловлена присутствием карбонатов и бикарбонатов (Na+, K+, Ca²⁺, Mg²⁺).
+        </p>
+        <p>
+            Введите полученные объемы кислоты для мгновенного расчета.
+        </p>
+
+        <!-- Чекбоксы оставляем для удобства лаборанта -->
+        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+            <details>
+                <summary>Показать порядок работы</summary>
+
+                <p style="font-weight:600; margin-bottom:5px;">Необходимые реактивы:</p>
+                <ul class="bullet" style="font-size: 14px; color: var(--tg-theme-hint-color);">
+                    <li>Индикаторы: фенолфталеин, метилоранж</li>
+                    <li>Серная кислота 0,02 N</li>
+                    <li>Пипетки, кювета</li>
+                </ul>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+                    <label><input type="checkbox"> 1. Отмерьте 1 мл фильтрата.</label>
+                    <label><input type="checkbox"> 2. Добавьте 2–3 капли фенолфталеина.</label>
+                    <label><input type="checkbox"> 3. Титруйте 0,02 N H₂SO₄ до обесцвечивания.</label>
+                    <label><input type="checkbox"> 4. <b>Запишите объём Pf.</b></label>
+                    <label><input type="checkbox"> 5. Добавьте 2–3 капли метилоранжа.</label>
+                    <label><input type="checkbox"> 6. Титруйте до оранжево-красной окраски.</label>
+                    <label><input type="checkbox"> 7. <b>Запишите общий объём Mf.</b></label>
+                </div>
+            </details>
+        </div>
+
+        <!-- 🔥 ДОБАВЛЕНО: oninput="calculateAlkalinity()" -->
+        <div class="input-block">
+            <label for="inpPf">Объём H₂SO₄ для Pf (мл)</label>
+            <input type="number" id="inpPf" step="0.01" placeholder="0.00" 
+                   oninput="calculateAlkalinity()">
+        </div>
+        
+        <!-- 🔥 ДОБАВЛЕНО: oninput="calculateAlkalinity()" -->
+        <div class="input-block">
+            <label for="inpMfAdd">Доп. объём H₂SO₄ для Mf (мл)</label>
+            <input type="number" id="inpMfAdd" step="0.01" placeholder="0.00" 
+                   oninput="calculateAlkalinity()">
+        </div>
+
+        <!-- Кнопку "Рассчитать" МЫ УДАЛИЛИ -->
+    </div>
+
+    <div class="results-card">
+        <h2>Результаты:</h2>
+        <p>Карбонатная щёлочность (Pf): <span id="outPf" class="result-main">-</span></p>
+        <p>Общая щёлочность (Mf): <span id="outMf" class="result-main">-</span></p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+        <p>Итого (Pf / Mf): <span id="outFinal" class="result-main" style="font-size: 1.2em;">- / -</span></p>
+        
+        <div id="warningBox" class="warning"></div>
+    </div>
+</main>

@@ -1,0 +1,41 @@
+<main>
+    <!-- Кнопка Назад -->
+    <button class="back-button" onclick="location.hash = '#/home'">
+        Назад
+    </button>
+
+    <!-- Заголовок страницы -->
+    <h2>Утяжеление раствора</h2>
+
+    <div class="card">
+        <p class="example">
+            Пожалуйста, вводите корректные данные. Обратите внимание на единицы измерения.
+        </p>
+
+        <div class="input-block">
+            <label for="p_target">Необходимая плотность (кг/м³)</label>
+            <input id="p_target" type="number" step="0.01" placeholder="например 1200">
+        </div>
+
+        <div class="input-block">
+            <label for="v_initial">Исходный объём (м³)</label>
+            <input id="v_initial" type="number" step="0.01">
+        </div>
+
+        <div class="input-block">
+            <label for="p_initial">Исходная плотность (кг/м³)</label>
+            <input id="p_initial" type="number" step="0.01">
+        </div>
+
+        <div class="input-block">
+            <label for="p_weighting">Удельный вес утяжелителя (кг/м³)</label>
+            <input id="p_weighting" type="number" step="0.01" value="4200"> <!-- Частое значение по умолчанию -->
+        </div>
+
+        <!-- Вызов функции из calculations.js -->
+        <button onclick="densification()">Рассчитать</button>
+    </div>
+
+    <!-- Блок результатов -->
+    <div id="result" class="results-card"></div>
+</main>

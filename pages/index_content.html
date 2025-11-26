@@ -1,0 +1,53 @@
+<head>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- 🔥 Сначала логика расчетов -->
+    <script src="calculations.js"></script> 
+    <!-- 🔥 Потом логика приложения -->
+    <script src="app.js" defer></script>
+</head>
+<main>
+    <section>
+        <div style="margin-bottom: 8px;">
+            <h2 style="color: var(--tg-theme-link-color);">Утяжеление, смешивание, разбавление буровых растворов</h2>
+        </div>
+
+        <div class="menu-item" onclick="location.hash = '#/densification'">
+            <span>🧱 <span>Утяжеление раствора (добавление утяжелителя)</span></span>
+        </div>
+        <div class="menu-item" onclick="location.hash = '#/mix-density'">
+            <span>🔄 <span>Плотность при смешивании двух различных растворов</span></span>
+        </div>
+        <div class="menu-item" onclick="location.hash = '#/mix-volume'">
+            <span>➕ <span>Разбавление раствора</span></span>
+        </div>
+    </section>
+
+    <br>
+
+    <section>
+        <div style="margin-bottom: 8px;">
+            <h2 style="color: var(--tg-theme-link-color);">Хим. анализ</h2>
+        </div>
+
+        <div class="menu-item" onclick="location.hash = '#/alkalinity'">
+            <span>🧪 <span>Карбонатная и общая щелочность</span></span>
+        </div>
+        <div class="menu-item" onclick="location.hash = '#/chlorides'">
+            <span>🧂 <span>Определение хлорид-ионов</span></span>
+        </div>
+        <div class="menu-item" onclick="location.hash = '#/hardness'">
+            <span>💧 <span>Общая жёсткость</span></span>
+        </div>
+        <div class="menu-item" onclick="location.hash = '#/mbt'">
+            <span>🔵 <span>Метиленовая синь (МБТ)</span></span>
+        </div>
+        <div class="menu-item" onclick="location.hash = '#/calcium'">
+            <span>🐚 <span>Карбонат кальция (Кальциметр)</span></span>
+        </div>
+        <div class="menu-item" onclick="location.hash = '#/potassium'">
+            <span>🍌 <span>Ионы калия (K⁺)</span></span>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,101 @@
+<main>
+    <!-- Кнопка Назад -->
+    <button class="back-button" onclick="location.hash = '#/home'">
+        Назад
+    </button>
+
+    <h2>Общая жёсткость</h2>
+
+    <div class="card">
+        <!-- Интро -->
+        <p style="font-size: 14px; color: var(--tg-theme-text-color); margin-bottom: 15px;">
+            Вода, содержащая большое количество растворенных солей кальция и магния, называется «жесткой». Признаком «жесткой» воды может служить плохое образование в ней мыльной пены. На многих месторождениях применяемая вода довольно «жесткая». Глинопорошки, добавляемые в такую воду, дают очень малый выход раствора. Чем жестче вода, тем больше требуется бентонита, чтобы получить нормальный глинистый раствор.
+        </p>
+
+        <!-- Инструкция -->
+        <details style="margin-bottom: 20px;">
+            <summary>
+                Реактивы и порядок работы
+            </summary>
+            
+            <div style="margin-top: 10px;">
+                <p style="font-weight:600; margin-bottom:5px;">Реактивы:</p>
+                <ul class="bullet" style="font-size: 14px; color: var(--tg-theme-hint-color);">
+                    <li>Трилон Б (0.1 N) или ЭДТА</li>
+                    <li>Буферный раствор</li>
+                    <li>Индикатор: хром тёмно-синий</li>
+                </ul>
+
+                <p style="font-weight:600; margin-bottom:5px;">Порядок работы:</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>1. Отмерьте 1 мл фильтрата в кювету.</div>
+                    </label>
+
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>2. Добавьте 2 мл буферного раствора и перемешайте.</div>
+                    </label>
+
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>3. Добавьте 4-5 капель индикатора (хром тёмно-синий).</div>
+                    </label>
+
+                    <label style="align-items: flex-start;">
+                        <input type="checkbox" style="margin-top: 4px;">
+                        <div>4. Титруйте Трилоном Б до синего цвета.</div>
+                    </label>
+
+                </div>
+            </div>
+        </details>
+
+        <!-- Ввод данных -->
+        <p style="font-size:13px; color:var(--tg-theme-hint-color); margin-bottom:10px;">
+            Нормальность Трилона Б фиксирована: <b>0.1 N</b>
+        </p>
+
+        <div class="input-block">
+            <label for="inpVolTrilon">Объем Трилона Б на титрование (V, мл)</label>
+            <input type="number" id="inpVolTrilon" step="0.01" placeholder="например 1.35"
+                   oninput="calculateHardness()">
+        </div>
+
+        <div class="input-block">
+            <label for="inpVolFilt">Объем фильтрата (a, мл)</label>
+            <input type="number" id="inpVolFilt" step="0.1" value="1" placeholder="например 1.0"
+                   oninput="calculateHardness()">
+        </div>
+    </div>
+
+    <!-- Результат -->
+    <div class="results-card" style="display: block;">
+        <h2>Результаты:</h2>
+        
+        <p style="font-size: 13px; color: var(--tg-theme-hint-color);">
+            Формула: <span id="outFormula" style="font-family: monospace;">(0.1 × V × 1000) / a</span>
+        </p>
+
+        <!-- Основной результат -->
+        <p>Общая жёсткость:</p>
+        <div id="outHardness" class="result-main" style="font-size: 22px; margin-bottom: 15px;">-</div>
+
+        <!-- Разделитель -->
+        <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 10px 0;">
+
+        <!-- Детализация по ионам -->
+        <div style="display: flex; justify-content: space-between; gap: 10px;">
+            <div style="flex: 1;">
+                <p style="font-size: 13px; margin-bottom: 2px;">по Ca²⁺ (×20.04)</p>
+                <div id="outCa" style="font-weight: 600; color: var(--tg-theme-text-color); font-size: 16px;">-</div>
+            </div>
+            <div style="flex: 1;">
+                <p style="font-size: 13px; margin-bottom: 2px;">по Mg²⁺ (×12.16)</p>
+                <div id="outMg" style="font-weight: 600; color: var(--tg-theme-text-color); font-size: 16px;">-</div>
+            </div>
+        </div>
+    </div>
+</main>
