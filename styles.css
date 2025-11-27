@@ -480,3 +480,7 @@ details[open] > summary::after {
 details > div {
     margin-top: 10px;
 }
+
+#app .page {
+    padding-top: calc(var(--tg-safe-area-top, 12px) + 20px);
+}
