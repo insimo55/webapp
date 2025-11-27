@@ -11,42 +11,72 @@ const App = (() => {
     const containerId = "app";
     const pagesPath = "pages/";
 
+    /* -----------------------------
+       Управление системной кнопкой Назад
+       ----------------------------- */
+    function updateBackButton() {
+        const page = location.hash.replace("#/", "");
+        if (tg) {
+            if (page && page !== "home") {
+                tg.BackButton.show();
+            } else {
+                tg.BackButton.hide();
+            }
+        }
+    }
+
+    if (tg) {
+        tg.BackButton.onClick(() => {
+            location.hash = "#/home";
+        });
+    }
+
+    /* -----------------------------
+       Загрузка HTML (с кешем)
+       ----------------------------- */
     async function loadPage(path) {
         if (pageCache.has(path)) return pageCache.get(path);
         const res = await fetch(path);
+
         if (!res.ok) throw new Error("404");
+
         const html = await res.text();
         pageCache.set(path, html);
         return html;
     }
-console.log("HASH:", location.hash);
-console.log("FULL URL:", location.href);
+
+    /* -----------------------------
+       Плавная смена страниц
+       ----------------------------- */
     async function showPage(path) {
         const root = document.getElementById(containerId);
         try {
             const html = await loadPage(path);
-            
-            // 1. Вставляем HTML
-            // Создаем временный div, чтобы достать только содержимое main
+
+            // достаём содержимое <main>
             const temp = document.createElement('div');
             temp.innerHTML = html;
             const content = temp.querySelector('main')?.innerHTML || html;
 
             await animateSwap(root, content);
 
-            // 2. Очищаем поля (вызываем функцию из calculations.js, если она есть)
+            // очистка форм, если существует
             if (typeof clearPageInputs === 'function') {
                 clearPageInputs();
             }
 
-            // 3. Скролл вверх
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 0); // вверх
+
+            updateBackButton(); // <── обновляем кнопку назад
 
         } catch (err) {
             root.innerHTML = `<div class="card warning">Ошибка: ${err.message}</div>`;
         }
     }
 
+    /* -----------------------------
+       Анимация переключения страниц
+       ----------------------------- */
     function animateSwap(root, newHTML) {
         return new Promise(resolve => {
             const newNode = document.createElement("div");
@@ -70,21 +100,31 @@ console.log("FULL URL:", location.href);
         });
     }
 
+    /* -----------------------------
+       Определение страницы по hash
+       ----------------------------- */
     function resolveFromHash() {
-        let hash = location.hash.split("?")[0]; // убираем мусор Telegram
+        let hash = location.hash.split("?")[0]; 
         if (!hash || !hash.startsWith("#/")) hash = "#/home";
 
         const name = hash.replace(/^#\/?/, "").split("/")[0] || "home";
         return pagesPath + (name === "home" ? "index_content.html" : `${name}.html`);
     }
 
+    /* -----------------------------
+       Инициализация приложения
+       ----------------------------- */
     function init() {
         if (!document.getElementById(containerId)) {
             const d = document.createElement('div');
             d.id = containerId;
             document.body.append(d);
         }
-        window.addEventListener("hashchange", () => showPage(resolveFromHash()));
+
+        window.addEventListener("hashchange", () => {
+            showPage(resolveFromHash());
+        });
+
         showPage(resolveFromHash());
     }
 
