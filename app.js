@@ -132,3 +132,20 @@ const App = (() => {
 })();
 
 document.addEventListener("DOMContentLoaded", App.init);
+
+
+const logo = document.getElementById('logo');
+
+function updateLogoTheme() {
+    if (tg.colorScheme === 'dark') {
+        logo.src = 'logo_white.svg';
+    } else {
+        logo.src = 'logo.svg';
+    }
+}
+
+// при старте
+updateLogoTheme();
+
+// если пользователь сменил тему в Telegram
+tg.onEvent('themeChanged', updateLogoTheme);
